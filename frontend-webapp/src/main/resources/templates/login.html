@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Thymeleafを有効化 => th:XXXX という属性を各タグに追加することで利用可能 -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>ログインページ</title>
@@ -6,4 +7,28 @@
 <body>
     <h1>Microservice WebApp Login</h1>
 
+    <!-- URLパラメータに「error」が含まれていたら、メッセージ出力 -->
+    <div th:if="${param.error}">
+        <p>ユーザー名もしくはパスワードが違います</p>
+    </div>
+
+    <!-- ユーザ名・PWをサーバへ送信するためのForm -->
+    <!-- submitボタンが押下された時のaction（URLパス`/login`へ`post`する）※@はthのリンク記法 -->
+    <!-- `action="#" はThymleafが有効化されていれば上書きされる -->
+    <form action="#" th:action="@{/login}" method="post">
+        <div>
+            <label>ユーザ名</label>
+            <input type="text" name="username">
+            <!-- name="username"はSecurityConfig.javaにてフィールド名指定を合わせる必要がある -->
+        </div>
+        <div>
+            <label>パスワード</label>
+            <input type="password" name="password">
+            <!-- name="password"はSecurityConfig.javaにてフィールド名指定を合わせる必要がある -->
+        </div>
+        <div>
+            <button type="submit">ログイン</button>
+        </div>
+    </form>
 </body>
+</html>
