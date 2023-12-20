@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class frontController {
     @GetMapping
-    public String home(){
-        return "home";
+    public String index(){
+        return "index";
     }
 
     @GetMapping("/login")
@@ -15,5 +15,5 @@ public class frontController {
         // Thymeleafを利用しているため、記載で`/resources/templates/login.html`をreturnする
         return "login";
     }
-    
+
 }
