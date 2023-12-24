@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class frontController {
     @GetMapping
-    public String index(){
-        return "index";
+    public String home(){
+        return "home";
     }
 
     @GetMapping("/login")
@@ -16,4 +16,8 @@ public class frontController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    public String showLogout(){
+        return "logout";
+    }
 }

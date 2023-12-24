@@ -17,17 +17,17 @@
     <!-- `action="#" はThymleafが有効化されていれば上書きされる -->
     <form action="#" th:action="@{/login}" method="post">
         <div>
-            <label for="usernameInput" class="form-label">ユーザ名</label>
-            <input type="text" id="usernameInput" name="username" class="form-control">
+            <label for="usernameInput">ユーザ名</label>
+            <input type="text" id="usernameInput" name="username">
             <!-- name="username"はSecurityConfig.javaにてフィールド名指定を合わせる必要がある -->
         </div>
         <div>
-            <label for="passwordInput" class="form-label">パスワード</label>
-            <input type="password" id="passwordInput" name="password" class="form-control">
+            <label for="passwordInput">パスワード</label>
+            <input type="password" id="passwordInput" name="password">
             <!-- name="password"はSecurityConfig.javaにてフィールド名指定を合わせる必要がある -->
         </div>
         <div>
-            <button type="submit" class="btn btn-primary">ログイン</button>
+            <button type="submit">ログイン</button>
         </div>
     </form>
 </body>
