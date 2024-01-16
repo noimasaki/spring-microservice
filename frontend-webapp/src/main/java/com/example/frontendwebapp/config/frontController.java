@@ -1,7 +1,9 @@
 package com.example.frontendwebapp.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class frontController {
@@ -19,5 +21,15 @@ public class frontController {
     @GetMapping("/logout")
     public String showLogout(){
         return "logout";
+    }
+
+    @Autowired
+    private ItemService itemService;
+
+    
+    @GetMapping("/items")
+    @ResponseBody
+    public String showItems(){
+        return itemService.getAllItems();
     }
 }

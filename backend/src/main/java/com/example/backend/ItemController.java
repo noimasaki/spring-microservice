@@ -1,7 +1,5 @@
 package com.example.backend;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,9 +11,13 @@ public class ItemController {
     private ItemService itemService;
 
     // @GetMappingで"/items"へアクセスしたときにgetAllItems()を実行
+    // @GetMapping("/items")
+    // public List<Item> getAllItems() {
+    //     return itemService.getAllItems();
+    // }
     @GetMapping("/items")
-    public List<Item> getAllItems() {
-        return itemService.getAllItems();
+    public String getAllItems() {
+        return "ALL items !!";
     }
 
     // 全てのitemではなく、itemIdで個別の情報を返す
