@@ -1,9 +1,11 @@
-package com.example.frontendwebapp.config;
+package com.example.frontendwebapp.app.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.example.frontendwebapp.domain.service.frontItemService;
 
 @Controller
 public class frontController {
@@ -24,12 +26,14 @@ public class frontController {
     }
 
     @Autowired
-    private ItemService itemService;
+    private frontItemService frontItemService;
 
-    
     @GetMapping("/items")
     @ResponseBody
+    // 【@ResponseBody】
+    // Thymeleafを利用しているため、Stringでreturnしてしまうとhtmlファイル名であると解釈してしまうため、
+    // htmlファイルではなくてレスポンス本文であることを明示的にするアノテーション
     public String showItems(){
-        return itemService.getAllItems();
+        return frontItemService.getAllItems();
     }
 }

@@ -1,8 +1,11 @@
-package com.example.backend;
+package com.example.backenditem.domain.service;
+
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+
+import com.example.backenditem.domain.model.Item;
 
 @Service
 public class ItemService {
@@ -14,16 +17,18 @@ public class ItemService {
         new Item("10005", "ブルーベリー", "フード")
     );
 
-        public List<Item> getAllItems() {
-            return allItems;
-        }
+    // 全てのItemリストを返すメソッド
+    public List<Item> getAllItems() {
+        return allItems;
+    }
 
-        public Item getItem(String itemId) {
-            for (int i=0; i<allItems.size(); i++){
-                if (allItems.get(i).getItemId().equals(itemId)) {
-                    return allItems.get(i);
-                }
+    // 個別のItemを返すメソッド
+    public Item getItem(String itemId) {
+        for (int i=0; i<allItems.size(); i++){
+            if (allItems.get(i).getItemId().equals(itemId)) {
+                return allItems.get(i);
             }
-            return null;    // itemIdが見つからなかったらnullを返す
         }
+        return null;    // itemIdが見つからなかったらnullを返す
+    }
 }

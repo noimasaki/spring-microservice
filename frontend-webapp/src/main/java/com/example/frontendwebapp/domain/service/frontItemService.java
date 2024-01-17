@@ -1,15 +1,15 @@
-package com.example.frontendwebapp.config;
+package com.example.frontendwebapp.domain.service;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class ItemService {
+public class frontItemService {
     
     private RestTemplate restTemplate;
 
-    public ItemService (RestTemplateBuilder restTemplateBuilder) {
+    public frontItemService (RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
@@ -20,3 +20,4 @@ public class ItemService {
         return items;
     }
 }
+
