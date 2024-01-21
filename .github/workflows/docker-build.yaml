@@ -1,26 +1,28 @@
 # 名前
 name: "Docker image build and push to DockerHub"
 
-# onセクション：jobsの実行トリガーを記載
+# onセクション
+# ：このワークフローがいつ実行されるかを定義
 on:
   push:
     branches:
       - 'main'  # mainブランチにpushされたときに実行
 
 # jobsセクション
-# ：jobセクション配下に1つ以上のjobIDを定義する。各jobIDは並列に処理される。
+# ：ワークフローの中で行う作業をjobIDとして定義する。各jobIDは並列に処理される。
 jobs:
   # jobID
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # 実行環境（ランナー）を指定
     steps:
       -
+        # リポジトリのコードをランナーへチェックアウト
         name: Checkout
         uses: actions/checkout@v3
       -
         name: Set up JDK
         uses: actions/setup-java@v3
-        with:
+        with: # Java環境のオプション指定（作成したSpringプロジェクトに合わせる）
           java-version: '17'
           distribution: 'temurin'
           cache: maven
@@ -35,9 +37,11 @@ jobs:
           cd frontend-webapp
           mvn -B package spring-boot:repackage -DskipTests
       -
+        # マルチプラットフォームのビルドをサポートするためQEMUをセットアップ（任意）
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       -
+        # マルチプラットフォームのビルドをサポートするためQEMUをセットアップ（任意）
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
       -
@@ -47,17 +51,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Build and push（backend-item）
         uses: docker/build-push-action@v5
         with:
           context: ./backend-item
-          push: true
+          push: true  # Dockerイメージのビルド後に自動的にDocker Hubにプッシュするかどうか
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/backend-item:latest
       -
-        name: Build and push
+        name: Build and push（frontend-webapp）
         uses: docker/build-push-action@v5
         with:
           context: ./frontend-webapp
-          push: true
+          push: true  # Dockerイメージのビルド後に自動的にDocker Hubにプッシュするかどうか
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/frontend-webapp:latest
-          
