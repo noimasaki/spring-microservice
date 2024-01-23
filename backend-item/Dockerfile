@@ -9,7 +9,7 @@ ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
 
 # コンテナがリッスンするポートを指定
-EXPOSE 8081
+EXPOSE 8080
 
 # Dockerコンテナ起動時に実行されるコマンド
 ENTRYPOINT ["java","-jar","/app.jar"]
