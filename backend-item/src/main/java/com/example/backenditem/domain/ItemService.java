@@ -1,11 +1,9 @@
-package com.example.backenditem.domain.service;
+package com.example.backenditem.domain;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-
-import com.example.backenditem.domain.model.Item;
 
 @Service
 public class ItemService {
@@ -31,4 +29,5 @@ public class ItemService {
         }
         return null;    // itemIdが見つからなかったらnullを返す
     }
+
 }

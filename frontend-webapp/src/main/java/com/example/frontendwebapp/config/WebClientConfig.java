@@ -1,29 +1,26 @@
 package com.example.frontendwebapp.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.example.frontendwebapp.app.web.ServiceProperties;
-
 @Configuration
-@ComponentScan("com.example.frontendwebapp.app.web")    //Controllerクラスは別ディレクトリなので読み込んであげる
-
 public class WebClientConfig {
-    // backendを呼び出すときの基本URIをServicePropertiesから取得する
-    // つまり、「/backend/items」へリクエストを送信するときに
-    // getDns()メソッドで取得した基本URIを設定して「http://xxxx.com/backend/items」へリクエストを送信する
 
-    @Autowired
-    ServiceProperties serviceProperties;
+    // application.ymlからプロパティservice.backendEndpointの値を取得して
+    // 変数backendEndpointへ設定する
+    @Value("${service.backendEndpoint}")
+    private String backendEndpoint;
     
+    // backendを呼び出すときの基本URIを設定
+    // つまり、「/backend/items」へリクエストを送信するときに
+    // 基本URIを設定して「http://xxxx.com/backend/items」へリクエストを送信する
     @Bean
     public WebClient webClient(){
         return WebClient.builder()
-            .baseUrl(serviceProperties.getDns())
-            .build();
+                .baseUrl(backendEndpoint)
+                .build();
     }
-    
+
 }

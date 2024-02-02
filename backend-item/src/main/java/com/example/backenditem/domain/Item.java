@@ -1,4 +1,4 @@
-package com.example.backenditem.domain.model;
+package com.example.backenditem.domain;
 
 public class Item {
     private String itemId;          //商品ID
@@ -36,4 +36,5 @@ public class Item {
     public void setItemCategory(String itemCategory) {
         this.itemCategory = itemCategory;
     }
+    
 }

@@ -1,13 +1,13 @@
-package com.example.frontendwebapp.config;
+package com.example.backenditem;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FrontendWebappApplication {
+public class BackendItemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FrontendWebappApplication.class, args);
+		SpringApplication.run(BackendItemApplication.class, args);
 	}
 
 }
