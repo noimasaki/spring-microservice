@@ -35,9 +35,16 @@ public class LoggingAspect {
         String userId = getUserId();
         String host = getServerName();
         String sessionId = getSessionId();
+        String trackingId = (String) request.getAttribute("X-Tracking-ID");
+        if (trackingId == null) {
+            trackingId = request.getHeader("X-Tracking-ID");
+        }
+        if (trackingId == null) {
+            trackingId = "No tracking ID";
+        }
 
         // ログのフォーマット
-        String logMessage = String.format("Method: %s, IP: %s, User: %s, Host: %s, SessionId: %s", method , ipAddress, userId, host, sessionId);
+        String logMessage = String.format("Method: %s, IP: %s, User: %s, Host: %s, SessionId: %s, TrackingId: %s", method , ipAddress, userId, host, sessionId, trackingId);
 
         // メソッド実行後のログ出力
         logger.info(logMessage);
@@ -61,4 +68,5 @@ public class LoggingAspect {
                 ? ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getSession().getId()
                 : "No session";
     }
+
 }
