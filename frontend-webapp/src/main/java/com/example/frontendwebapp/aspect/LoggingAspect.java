@@ -44,7 +44,7 @@ public class LoggingAspect {
         }
 
         // ログのフォーマット
-        String logMessage = String.format("Method: %s, IP: %s, User: %s, Host: %s, SessionId: %s, TrackingId: %s", method , ipAddress, userId, host, sessionId, trackingId);
+        String logMessage = String.format("Method: %s, IP: %s, User: %s, Host: %s, SessionId: %s", method , ipAddress, userId, host, sessionId);
 
         // メソッド実行後のログ出力
         logger.info(logMessage);
